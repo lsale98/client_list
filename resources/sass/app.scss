@@ -1,8 +1,15 @@
 //
+$dark: #333;
+$red: rgb(196, 0, 0);
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Raleway", sans-serif;
+}
+
+li {
+    list-style-type: none;
 }
 
 @import "components/0-navigation";
