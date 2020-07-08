@@ -5,6 +5,14 @@
   font-family: "Raleway", sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
 li {
   list-style-type: none;
 }
@@ -30,14 +38,30 @@ li {
 
 #navigation #list li {
   width: 100%;
-  background-color: green;
+  background-color: #4d4d4d;
   margin: auto;
   text-align: center;
   border: none;
   margin-top: 15px;
+  transition: all 0.3s ease-in;
 }
 
-#navigation #list li a {
+#navigation #list li.active {
+  transition: all 0.3s ease-in;
+  background-color: #c40000;
+}
+
+#navigation #list li:hover {
+  transition: all 0.3s ease-in;
+  background-color: #ff1212;
+}
+
+#navigation #list li .button {
+  font-size: 20px;
   color: white;
+}
+
+#navigation #list li .button i {
+  margin-right: 8px;
 }
 

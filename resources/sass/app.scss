@@ -8,6 +8,13 @@ $red: rgb(196, 0, 0);
     font-family: "Raleway", sans-serif;
 }
 
+a {
+    text-decoration: none;
+    &:hover {
+        text-decoration: none;
+    }
+}
+
 li {
     list-style-type: none;
 }
