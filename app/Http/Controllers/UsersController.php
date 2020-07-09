@@ -115,4 +115,13 @@ class UsersController extends Controller
 
         return Redirect::to('/user/' . $request->input('user_id'))->with('success', 'Uspešno Ste dodali popravku');
     }
+
+    public function destroy($id)
+    {
+        $user = User::find($id);
+
+        $user->delete();
+
+        return Redirect::to('/')->with('success', 'Uspešno Ste izbrisali klijenta');
+    }
 }

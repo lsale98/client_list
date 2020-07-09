@@ -7,8 +7,11 @@
         <h3><i class="fas fa-user mr-2"></i>{{ $user->name }} {{$user->lastname}} - {{$user->brand}} {{$user->model}}</h3>
         <h3><i class="fas fa-phone-alt mr-2"></i>{{$user->number}}</h3>
     </div>
-
     <a href="/user/{{$user->id}}/repairs" class="btn btn-success"><i class="fas fa-plus mr-2"></i>Dodajte popravku</a>
+    {!! Form::open(array('action' => array('UsersController@destroy', $user->id), 'method' => 'POST', 'class' => 'delete__btn')) !!}
+    {{ Form::hidden('_method', 'DELETE') }}
+    {{ Form::submit('Izbrišite klijenta', array('class' => 'btn btn-danger')) }}
+    {!! Form::close() !!}
 </div>
 <div id="msg">
     @include('includes.messages')

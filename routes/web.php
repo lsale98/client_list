@@ -20,3 +20,4 @@ Route::post('/', 'UsersController@store');
 Route::get('/user/{id}', 'UsersController@show');
 Route::get('/user/{id}/repairs', 'UsersController@repairs');
 Route::post('/repairs', 'UsersController@repairs_store');
+Route::delete('users/{id}', 'UsersController@destroy');
