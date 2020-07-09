@@ -21,7 +21,7 @@ class UsersController extends Controller
             $query = $request->get('query');
 
             if ($query != '') {
-                $data = User::where('name', 'like', '%' . $query . '%')->orderBy('created_at', 'desc')->get();
+                $data = User::where('name', 'like', '%' . $query . '%')->orWhere('lastname', 'like', '%' . $query . '%')->orderBy('created_at', 'desc')->paginate(10);
             } else {
                 $data = User::orderBy('created_at', 'desc')->paginate(10);
             }

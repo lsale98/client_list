@@ -3,9 +3,9 @@
 
 @section('content')
 <div class="container mt-5">
-    <div class="my-5">
+    <div id="search__bar" class="my-5">
+        <i class="fas fa-search"></i>
         <input type="text" name="search" id="search" placeholder="Pretražite klijente" class="form-control w-50 m-auto">
-
     </div>
     @if(count($users) > 0)
     <table class="table">
@@ -14,7 +14,7 @@
                 <th scope="col">Ime</th>
                 <th scope="col">Prezime</th>
                 <th scope="col">Klijent kreiran</th>
-                <th scope="col">Prikaži</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>

@@ -1,22 +1,8 @@
-//
-$dark: #333;
-$red: rgb(196, 0, 0);
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Ubuntu", sans-serif;
-}
-
-a {
-    text-decoration: none;
-    &:hover {
-        text-decoration: none;
-    }
-}
-
-li {
-    list-style-type: none;
-}
-
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+// Variables
+@import "variables";
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
 @import "components/0-navigation";
+@import "components/1-table";
