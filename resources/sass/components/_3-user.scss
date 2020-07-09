@@ -1,0 +1,46 @@
+#main__info {
+    background-color: $dark;
+    color: white;
+    display: flex;
+    #main__group {
+        flex: 1;
+    }
+    a {
+        display: inline-block;
+        padding-top: 8px;
+        height: 40px;
+        margin-top: 15px;
+    }
+}
+
+.container {
+    #card {
+        margin: 25px auto;
+        border: 2px solid lighten($red, 10%);
+        .card-body {
+            h5 {
+                span {
+                    color: $red;
+                }
+            }
+            hr {
+                height: 2px;
+                background-color: $red;
+            }
+            p {
+                font-size: 25px;
+            }
+        }
+    }
+    nav {
+        margin: 20px 0px;
+        .pagination {
+            width: fit-content;
+            margin: auto;
+        }
+    }
+    h3 {
+        margin-top: 20px;
+        text-align: center;
+    }
+}

@@ -18,4 +18,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'lastname', 'number', 'brand', 'model'
     ];
+
+    public function repairs()
+    {
+        return $this->hasMany('App\Repair');
+    }
 }

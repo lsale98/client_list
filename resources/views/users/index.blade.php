@@ -2,6 +2,9 @@
 
 
 @section('content')
+
+@include('includes.messages')
+
 <div class="container mt-5">
     <div id="search__bar" class="my-5">
         <i class="fas fa-search"></i>
@@ -21,7 +24,6 @@
 
         </tbody>
     </table>
-    {{ $users->links() }}
     @else
     <h3>Nemate trenutno klijenata za prikaz</h3>
     @endif
