@@ -1,6 +1,6 @@
 #main__info {
     background-color: $dark;
-    color: white;
+    color: rgb(255, 255, 255);
     display: flex;
     #main__group {
         flex: 1;
@@ -11,12 +11,23 @@
         height: 40px;
         margin-top: 15px;
     }
+    form {
+        button {
+            display: inline-block;
+            padding-top: 8px;
+            height: 40px;
+            margin-top: 15px;
+        }
+    }
 }
 
 .container {
     #card {
         margin: 25px auto;
         border: 2px solid lighten($red, 10%);
+        .card-header {
+            width: 100%;
+        }
         .card-body {
             h5 {
                 span {

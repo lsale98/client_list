@@ -10961,33 +10961,32 @@ a:hover {
   border: none;
 }
 
-#navigation #list li {
+#navigation #list .button {
+  font-size: 20px;
+  color: white;
+}
+
+#navigation #list .button li.list-group-item {
   width: 100%;
   background-color: #4b545c;
-  margin: auto;
   text-align: center;
   border: none;
   margin-top: 15px;
   transition: all 0.3s ease-in;
 }
 
-#navigation #list li.active {
+#navigation #list .button li.list-group-item i {
+  margin-right: 8px;
+}
+
+#navigation #list .button li.list-group-item.active {
   transition: all 0.3s ease-in;
   background-color: #e3342f;
 }
 
-#navigation #list li:hover {
+#navigation #list .button li.list-group-item:hover {
   transition: all 0.3s ease-in;
   background-color: #ec7672;
-}
-
-#navigation #list li .button {
-  font-size: 20px;
-  color: white;
-}
-
-#navigation #list li .button i {
-  margin-right: 8px;
 }
 
 .container #search__bar {
@@ -11068,9 +11067,20 @@ a:hover {
   margin-top: 15px;
 }
 
+#main__info form button {
+  display: inline-block;
+  padding-top: 8px;
+  height: 40px;
+  margin-top: 15px;
+}
+
 .container #card {
   margin: 25px auto;
   border: 2px solid #e9605c;
+}
+
+.container #card .card-header {
+  width: 100%;
 }
 
 .container #card .card-body h5 span {

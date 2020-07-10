@@ -12,27 +12,26 @@
     #list {
         margin-top: 40px;
         border: none;
-        li {
-            width: 100%;
-            background-color: lighten($dark, 10%);
-            margin: auto;
-            text-align: center;
-            border: none;
-            margin-top: 15px;
-            transition: all 0.3s ease-in;
-            &.active {
+        .button {
+            font-size: 20px;
+            color: white;
+            li.list-group-item {
+                width: 100%;
+                background-color: lighten($dark, 10%);
+                text-align: center;
+                border: none;
+                margin-top: 15px;
                 transition: all 0.3s ease-in;
-                background-color: $red;
-            }
-            &:hover {
-                transition: all 0.3s ease-in;
-                background-color: lighten($red, 15%);
-            }
-            .button {
-                font-size: 20px;
-                color: white;
                 i {
                     margin-right: 8px;
+                }
+                &.active {
+                    transition: all 0.3s ease-in;
+                    background-color: $red;
+                }
+                &:hover {
+                    transition: all 0.3s ease-in;
+                    background-color: lighten($red, 15%);
                 }
             }
         }

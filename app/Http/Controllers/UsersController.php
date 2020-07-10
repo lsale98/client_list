@@ -116,6 +116,64 @@ class UsersController extends Controller
         return Redirect::to('/user/' . $request->input('user_id'))->with('success', 'Uspešno Ste dodali popravku');
     }
 
+    public function edit($id)
+    {
+        $user = User::find($id);
+
+        return view('users.edit')->with('user', $user);
+    }
+
+    public function repairs_edit($id)
+    {
+        $repair = Repair::find($id);
+
+        return view('repairs.edit')->with('repair', $repair);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'lastname' => 'required',
+            'number' => 'required',
+            'brand' => 'required',
+            'model' => 'required'
+        ]);
+
+        $user = User::find($id);
+
+        $user->name = $request->input('name');
+        $user->lastname = $request->input('lastname');
+        $user->number = $request->input('number');
+        $user->brand = $request->input('brand');
+        $user->model = $request->input('model');
+
+        $user->save();
+
+        return Redirect::to('/user/' . $id)->with('success', 'Uspešno Ste izmenili podatke');
+    }
+
+    public function repairs_update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'user_id' => 'required',
+            'kilometers' => 'required',
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
+        $repair = Repair::find($id);
+
+        $repair->user_id = $request->input('user_id');
+        $repair->kilometers = $request->input('kilometers');
+        $repair->title = $request->input('title');
+        $repair->body = $request->input('body');
+
+        $repair->save();
+
+        return Redirect::to('/user/' . $request->input('user_id'))->with('success', 'Uspešno Ste izmenili podatke popravke');
+    }
+
     public function destroy($id)
     {
         $user = User::find($id);
@@ -123,5 +181,14 @@ class UsersController extends Controller
         $user->delete();
 
         return Redirect::to('/')->with('success', 'Uspešno Ste izbrisali klijenta');
+    }
+
+    public function repairs_destroy($id)
+    {
+        $repair = Repair::find($id);
+
+        $repair->delete();
+
+        return redirect()->back()->with('success', 'Uspešno Ste izbrisali popravku');
     }
 }
