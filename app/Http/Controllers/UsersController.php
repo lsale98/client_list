@@ -52,6 +52,62 @@ class UsersController extends Controller
         }
     }
 
+    public function action__user(Request $request, $id)
+    {
+        if ($request->ajax()) {
+
+            $query = $request->get('query');
+
+            if ($query != '') {
+
+                $data = Repair::where('title', 'like', '%' . $query . '%')->orWhere('body', 'like', '%' . $query . '%')->orderBy('created_at', 'desc')->paginate(10);
+            } else {
+                $data = Repair::where('user_id', $id)->orderBy('created_at', 'desc')->paginate(5);
+            }
+            $total_row = $data->count();
+            $output = '';
+            if ($total_row > 0) {
+                foreach ($data as $repair) {
+                    $output .= '
+                    <div id="card" class="card w-90">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-lg-7 col-md-7 col-sm-7">
+                                <h5 class="pt-2">Popravka: ' . $repair->title . '</h5>
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5 text-right">
+                                <a href="/user/repairs/' . $repair->id . '/edit" class="btn btn-primary"><i class="fas fa-edit mr-2"></i>Izmenite popravku</a>
+                                {!! Form::open(array("action" => array("UsersController@repairs_destroy", ' . $repair->id . '), "method" => "POST", "class" =>"d-inline-block")) !!}
+                                {{ Form::hidden("_method", "DELETE") }}
+                                <button class="btn btn-danger" type="submit" value="submit" onclick="return confirm("Da li Ste sigurni da želite da obrišete popravku ' . $repair->title . '?")">
+                                    <i class="fas fa-trash-alt mr-2"></i>Izbrišite popravku
+                                </button>
+                                {!! Form::close() !!}
+
+                        </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5><i class="fas fa-calendar-alt mr-1"></i>Datum popravke(dan/mesec/godina): ' . $repair->created_at->format("d/m/Y") . ' <span>|</span><i class="fas fa-car ml-1"></i> Kilometraža: ' . $repair->kilometers . ' km</h5>
+                        <hr>
+                        <h5><i class="fas fa-exclamation-circle mr-1"></i>Napomena:</h5>
+                        <p>' . $repair->body . '</p>
+                    </div>
+                </div>
+            ';
+                }
+            } else {
+                $output = '
+
+            <h3 class="text-center">Nije pronađena ni jedana popravka</h3>
+
+            ';
+            }
+            $data = array('repair_data' => $output);
+            return Response::json($data);
+        }
+    }
+
     public function create()
     {
         return view('users.create');

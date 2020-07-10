@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'UsersController@index');
 Route::get('/action', 'UsersController@action')->name('index.action');
+Route::get('/user/{id}/action', 'UsersController@action__user')->name('show.action');
 Route::get('/user/create', 'UsersController@create');
 Route::post('/', 'UsersController@store');
 Route::get('/user/{id}', 'UsersController@show');
