@@ -94,7 +94,7 @@ class UsersController extends Controller
             } else {
                 $output = '
 
-            <h3 class="text-center">Nije pronađena ni jedana popravka</h3>
+            <h3 class="text-center">Nije pronađena ni jedna popravka</h3>
 
             ';
             }
