@@ -23,6 +23,7 @@ Route::get('/user/{id}/repairs', 'UsersController@repairs');
 Route::post('/repairs', 'UsersController@repairs_store');
 Route::get('/user/{id}/edit', 'UsersController@edit');
 Route::get('/user/repairs/{id}/edit', 'UsersController@repairs_edit');
+Route::get('/user/repairs/{id}', 'UsersController@repairs_show');
 Route::put('/user/{id}', 'UsersController@update');
 Route::put('/user/repairs/{id}', 'UsersController@repairs_update');
 Route::delete('users/{id}', 'UsersController@destroy');

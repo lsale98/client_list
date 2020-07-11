@@ -8,6 +8,33 @@ session_start();
 $_SESSION['user_id'] = $user->id;
 
 @endphp
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Brisanje klijenta: {{$user->name}} {{$user->lastname}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4>Da li Ste sigurni da želite da obrišete klijenta?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Nazad</button>
+                {!! Form::open(array('action' => array('UsersController@destroy', $user->id), 'method' => 'POST')) !!}
+                {{ Form::hidden('_method', 'DELETE') }}
+                <button class='btn btn-danger' type='submit' value='submit'>
+                    <i class="fas fa-trash-alt mr-2"></i>Izbrišite klijenta
+                </button>
+                {!! Form::close() !!}
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <div id="main__info" class="p-3">
     <div id="main__group">
         <h3><i class="fas fa-user mr-2"></i>{{ $user->name }} {{$user->lastname}} - {{$user->brand}} {{$user->model}}</h3>
@@ -15,12 +42,7 @@ $_SESSION['user_id'] = $user->id;
     </div>
     <a href="/user/{{$user->id}}/repairs" class="btn btn-success"><i class="fas fa-plus mr-2"></i>Dodajte popravku</a>
     <a href="/user/{{$user->id}}/edit" class="btn btn-primary mx-3"><i class="fas fa-user-edit mr-2"></i></i>Izmenite podatke</a>
-    {!! Form::open(array('action' => array('UsersController@destroy', $user->id), 'method' => 'POST')) !!}
-    {{ Form::hidden('_method', 'DELETE') }}
-    <button class='btn btn-danger' type='submit' value='submit' onclick="return confirm('Da li Ste sigurni da želite da obrišete {{ $user->name}} {{$user->lastname}}?')">
-        <i class="fas fa-trash-alt mr-2"></i>Izbrišite klijenta
-    </button>
-    {!! Form::close() !!}
+    <button id="btn_del" type="button" class="btn btn-danger" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-trash-alt mr-2"></i>Izbrišite klijenta</button>
 </div>
 <div id="msg">
     @include('includes.messages')

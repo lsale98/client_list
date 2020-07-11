@@ -77,12 +77,7 @@ class UsersController extends Controller
                             </div>
                             <div class="col-lg-5 col-md-5 col-sm-5 text-right">
                                 <a href="/user/repairs/' . $repair->id . '/edit" class="btn btn-primary"><i class="fas fa-edit mr-2"></i>Izmenite popravku</a>
-                                {!! Form::open(array("action" => array("UsersController@repairs_destroy", ' . $repair->id . '), "method" => "POST", "class" =>"d-inline-block")) !!}
-                                {{ Form::hidden("_method", "DELETE") }}
-                                <button class="btn btn-danger" type="submit" value="submit" onclick="return confirm("Da li Ste sigurni da želite da obrišete popravku ' . $repair->title . '?")">
-                                    <i class="fas fa-trash-alt mr-2"></i>Izbrišite popravku
-                                </button>
-                                {!! Form::close() !!}
+                                <a href="/user/repairs/' . $repair->id . '" class="btn btn-secondary"><i class="fas fa-eye mr-2"></i>Prikaži popravku</a>
 
                         </div>
                         </div>
@@ -142,6 +137,13 @@ class UsersController extends Controller
         $repairs = Repair::where('user_id', $id)->orderBy('created_at', 'desc')->paginate(5);
 
         return view('users.show')->with(array('user' => $user, 'repairs' => $repairs));
+    }
+
+    public function repairs_show($id)
+    {
+        $repair = Repair::find($id);
+
+        return view('repairs.show')->with('repair', $repair);
     }
 
     public function repairs($id)
@@ -239,12 +241,13 @@ class UsersController extends Controller
         return Redirect::to('/')->with('success', 'Uspešno Ste izbrisali klijenta');
     }
 
-    public function repairs_destroy($id)
+    public function repairs_destroy(Request $request, $id)
     {
+        $url = $request->input('url');
         $repair = Repair::find($id);
 
         $repair->delete();
 
-        return redirect()->back()->with('success', 'Uspešno Ste izbrisali popravku');
+        return redirect($url)->with('success', 'Uspešno Ste izbrisali popravku');
     }
 }
