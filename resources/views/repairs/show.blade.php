@@ -13,7 +13,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <h4>Da li Ste sigurni da želite da obrišete popravku?</h4>
+                <h4>Da li ste sigurni da želite da obrišete popravku?</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Nazad</button>

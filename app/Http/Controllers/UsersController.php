@@ -60,7 +60,15 @@ class UsersController extends Controller
 
             if ($query != '') {
 
-                $data = Repair::where('title', 'like', '%' . $query . '%')->orWhere('body', 'like', '%' . $query . '%')->orderBy('created_at', 'desc')->paginate(10);
+                // $data = Repair::where('user_id', $id)->where('title', 'like', '%' . $query . '%')->orderBy('created_at', 'desc')->paginate(10);
+                $data = Repair::where(function ($query2) use ($id, $query) {
+                    $query2->where('user_id', $id)
+                        ->where('title', 'like', '%' . $query . '%');
+                })
+                    ->orWhere(function ($query3) use ($id, $query) {
+                        $query3->where('user_id', $id)
+                            ->where('body', 'like', '%' . $query . '%');
+                    })->get();
             } else {
                 $data = Repair::where('user_id', $id)->orderBy('created_at', 'desc')->paginate(5);
             }
@@ -68,6 +76,7 @@ class UsersController extends Controller
             $output = '';
             if ($total_row > 0) {
                 foreach ($data as $repair) {
+
                     $output .= '
                     <div id="card" class="card w-90">
                     <div class="card-header">
@@ -94,9 +103,9 @@ class UsersController extends Controller
             } else {
                 $output = '
 
-            <h3 class="text-center">Nije pronađena ni jedna popravka</h3>
+        <h3 class="text-center">Nije pronađena ni jedna popravka</h3>
 
-            ';
+        ';
             }
             $data = array('repair_data' => $output);
             return Response::json($data);
