@@ -224,6 +224,7 @@ class UsersController extends Controller
     {
         $this->validate($request, [
             'user_id' => 'required',
+            'created_at' => 'required',
             'kilometers' => 'required',
             'title' => 'required',
             'body' => 'required',
@@ -232,6 +233,7 @@ class UsersController extends Controller
         $repair = Repair::find($id);
 
         $repair->user_id = $request->input('user_id');
+        $repair->created_at = $request->input('created_at');
         $repair->kilometers = $request->input('kilometers');
         $repair->title = $request->input('title');
         $repair->body = $request->input('body');

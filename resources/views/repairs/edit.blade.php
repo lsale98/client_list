@@ -18,6 +18,10 @@ $user_id = $_SESSION['user_id'];
                 {{ Form::open(array('action' => array('UsersController@repairs_update', $repair->id), 'method' => 'POST')) }}
                 {{ Form::hidden('user_id', "{$user_id}") }}
                 <div class="form-group">
+                    {{ Form::label('created_at', 'Datum(Godina-Mesec-Dan)') }}
+                    {{ Form::text('created_at', $repair->created_at, array('class' => 'form-control')) }}
+                </div>
+                <div class="form-group">
                     {{ Form::label('kilometers', 'Kilometraža') }}
                     {{ Form::text('kilometers', $repair->kilometers, array('class' => 'form-control')) }}
                 </div>
